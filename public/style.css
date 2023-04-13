@@ -59,6 +59,19 @@ canvas {
   flex-shrink: 0;
 }
 
+.menuBarElementSelected {
+  vertical-align: top;
+  display: inline;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-size: 1.1em;
+  margin: 6px;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+  flex-shrink: 0;
+  background: #333399;
+}
+
 .menuBarSpacer {
   width: 100vw;
   display: inline;
@@ -77,6 +90,14 @@ canvas {
           0 0 0 2px #000000;
 }
 
+@media only screen and (max-width: 800px) {
+  .window {
+    position: center;
+    top: initial;
+    left: initial;
+  }
+}
+
 .windowHeader {
   font-family: Charcoal, Geneva, sans-serif;
   font-size: 1em;
@@ -85,9 +106,8 @@ canvas {
   display: flex;
   flex-direction: row;
   padding: 0px;
-  height: auto;
   justify-content: center;
-
+  height: 25px;
 }
 
 .windowHeaderSpacer {
@@ -105,23 +125,77 @@ canvas {
           0px 10px 0 0px #777777 inset,
           0px 11px 0px 0px #ffffff inset,
           0px 12px 0 0px #777777 inset;
-  margin: 5px 10px;
+  margin: 5px 6px;
 
 }
 
 .windowHeaderText {
   flex-shrink: 0;
   padding: 0px;
-  margin: 0px;
+  margin: 3px;
+  font-size: 0.9em;
 }
 
 .windowContent {
-    background: white;
-    width: 375px;
-    height: 300px;
-    margin: 5px;
-    box-shadow:
-            1px 1px 0 0px #ffffff inset,
-            0 0 0 2px #000000;
+  background: white;
+  width: 350px;
+  height: 500px;
+  margin: 6px;
+  margin-top: 0px;
+  box-shadow:
+          1px 1px 0 0px #ffffff inset,
+          0 0 0 2px #000000;
+  overflow-y: scroll;
+  overflow-x: scroll;
 }
 
+.link {
+  margin: 0px;
+  padding-top: 10px
+}
+
+.linkDesc {
+  margin: 0px;
+  padding: 5px;
+  font-size: 1.2em;
+}
+
+.closeButton {
+  width: 15px;
+  height: 15px;
+  display: inline;
+  background: #CCCCCC;
+  margin: 4px;
+  flex: 0 0 15px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 18px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #AAAAAA;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #9999FF;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:active {
+  background: #6666CC;
+}
+
+::-webkit-scrollbar-corner {
+  background: #CCCCCC;
+  box-shadow:
+          1px 1px 0 0px #ffffff inset,
+          /*-1px -1px 0 0px #AAAAAA inset,*/
+          2px 0px 0 1px #CCCCCC,
+          0px 2px 0 1px #CCCCCC,
+          0 0 0 2px #000000;
+
+}
