@@ -48,8 +48,8 @@ function dragElement(elmnt) {
         pos3 = e.clientX;
         pos4 = e.clientY;
         // set the element's new position:
-        if ((elmnt.offsetTop - pos2) < 33) {
-            elmnt.style.top = "33px"
+        if ((elmnt.offsetTop - pos2) < 28) {
+            elmnt.style.top = "28px"
         } else {
             elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         }

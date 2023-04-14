@@ -216,7 +216,7 @@ canvas {
 
 img {
   width: inherit;
-  height: inherit;
+  height: 35px;
   padding-left: 3px;
 }
 
@@ -227,7 +227,6 @@ img {
   padding: 10px;
   text-align: center;
   margin:auto;
-
 }
 
 .contentLinkGroup:active {
@@ -237,8 +236,12 @@ img {
 
 .contentLinkDescription {
   margin: 0;
-  padding: 0;
+  padding: 2px;
   background: inherit;
+  font-family: Geneva, sans-serif;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+  font-size: 0.8em;
 }
 
 .contentParagraph {
