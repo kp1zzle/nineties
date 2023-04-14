@@ -12,27 +12,44 @@
     <div class="menuBarElement">File</div>
     <div class="menuBarElement">Edit</div>
     <div class="menuBarElement">View</div>
-    <div class="menuBarElementSelected">Special</div>
-<!--    <div class="menuBarElement">Help</div>-->
+    <div class="menuBarElement">Special</div>
+    <div class="menuBarElement" id="helpButton">Help</div>
     <div class="menuBarSpacer"></div>
     <div class="menuBarElement" id="time">5:33 PM</div>
 </div>
 
 <div class="window" id="window">
     <div class="windowHeader" id="windowHeader">
-        <div class="closeButton"></div>
+        <button class="windowHeaderButton" id="closeButton"></button>
         <div class="windowHeaderSpacer"></div>
        <p class="windowHeaderText">Kieran's Links</p>
         <div class="windowHeaderSpacer"></div>
-        <div class="closeButton"></div>
-        <div class="closeButton"></div>
+        <button class="windowHeaderButton"></button>
+        <button class="windowHeaderButton"></button>
     </div>
     <div class="windowContent">
-        <h1 class="link"><a href="https://twitter.com/raptorcoder">Circles</a></h1>
-        <h2 class="linkDesc">my latest interactive art piece</h2>
-        <h1 class="link"><a href="https://twitter.com/raptorcoder">Twitter</a></h1>
-        <h1 class="link"><a href="https://github.com/kp1zzle">Github</a></h1>
-        <h1 class="link"><a href="https://www.instagram.com/raptorcoder/">Instagram</a></h1>
+        <p class="contentParagraph">
+            Hi, I'm Kieran! I'm a software engineer and digital artist based in nyc.
+        </p>
+
+        <a class="contentLinkGroup" href="https://twitter.com/raptorcoder">
+            <img src="images/twitter.png">
+            <p class="contentLinkDescription">Twitter</p>
+        </a>
+        <a class="contentLinkGroup" href="https://www.instagram.com/raptorcoder/">
+            <img src="images/insta.png">
+            <p class="contentLinkDescription">Instagram</p>
+        </a>
+        <a class="contentLinkGroup" href="https://twitter.com/raptorcoder">
+            <img src="images/github.png">
+            <p class="contentLinkDescription">Github</p>
+        </a>
+        <a class="contentLinkGroup" href="https://twitter.com/raptorcoder">
+            <img src="images/linkedin.png">
+            <p class="contentLinkDescription">Linkedin</p>
+        </a>
+
+        <p class="contentParagraph"> Check out my latest interactive art piece: <a href="https://kp1zzle.github.io/circles">Circles</a></p>
     </div>
 </div>
 </body>
