@@ -79,7 +79,6 @@ function currentTime() {
         session = "PM";
     }
 
-    hh = (hh < 10) ? "0" + hh : hh;
     mm = (mm < 10) ? "0" + mm : mm;
 
     let time = hh + ":" + mm + " " + session;
