@@ -137,8 +137,13 @@ canvas {
 .windowHeaderText {
   flex-shrink: 0;
   padding: 0px;
-  margin: 3px;
+  margin-top: 3px;
   font-size: 0.9em;
+}
+
+.windowHeaderIcon {
+  height: 1.1em;
+  margin: 3px;
 }
 
 .windowContent {
@@ -229,9 +234,14 @@ img {
   margin:auto;
 }
 
-.contentLinkGroup:active {
-  background: #333399;
+.contentLinkGroup:active > img {
   color: #ffffff;
+  filter: brightness(0.4);
+}
+
+.contentLinkGroup:active > .contentLinkDescription {
+  color: #ffffff;
+  background: #262626;
 }
 
 .contentLinkDescription {
