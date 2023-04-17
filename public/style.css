@@ -12,7 +12,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #63639D;
+  background-color: #9899CC;
 }
 
 @supports (-webkit-touch-callout: none) {
@@ -37,9 +37,8 @@ canvas {
   left: 0;
   box-shadow: 0px 1px 0px 0px #CCCCCC,
               0px 2px 0px 0px #AAAAAA,
-              0px 3px 0px 0px #262626,
-              0px 4px 0px 0px #181926,
-              0px 5px 0px 0px #4A4A75,
+              0px 3px 0px 0px #181926,
+              0px 4px 0px 0px #5A5B7A,
               0px -2px 0px 0px #FFFFFF;
   font-family: Charcoal, Geneva, sans-serif;
   border-radius: 10px 10px 0% 0%;
@@ -52,9 +51,13 @@ canvas {
   all: unset;
   vertical-align: top;
   display: inline;
-  padding: 0px;
-  font-size: 1.1em;
-  margin: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 2px;
+  font-size: 1em;
+  letter-spacing: .03rem;
+  margin-top: 2px;
   -webkit-font-smoothing: none;
   font-smooth: never;
   flex-shrink: 0;
@@ -69,6 +72,7 @@ canvas {
 
 .menuBarElement:active {
   background: #333399;
+  color: white;
 }
 
 @media only screen and (max-width: 400px) {
@@ -92,7 +96,8 @@ canvas {
   box-shadow:
           1px 1px 0 0px #ffffff inset,
           -1px -1px 0 0px #AAAAAA inset,
-          0 0 0 1px #000000;
+          0 0 0 1px #000000,
+          2px 2px 0 0px #000000;
 }
 
 @media only screen and (max-width: 800px) {
@@ -165,8 +170,8 @@ canvas {
   1px 0px 0 1px #ffffff,
   1px 1px 0 1px #ffffff,
   0px 1px 0 1px #ffffff;
-  overflow-y: scroll;
-  overflow-x: scroll;
+  overflow-y: auto;
+  overflow-x: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -226,7 +231,18 @@ canvas {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 18px;
+  width: 16px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background: #AAAAAA;
+  box-shadow:
+          1px 1px 0 0px #000000 inset,
+          -1px -1px 0 1px #c5c5c5 inset,
+          -1px -1px 0 2px #b5b5b5 inset,
+          1px 1px 0 1px #747474 inset,
+          1px 1px 0 2px #848484 inset;
+
 }
 
 /* Track */
@@ -234,9 +250,14 @@ canvas {
   background: #AAAAAA;
 }
 
+
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #9999FF;
+  box-shadow:
+          -1px -1px 0 0px #5859ad inset,
+          1px 1px 0 0px #c4c5f6 inset;
 }
 
 /* Handle on hover */
