@@ -158,7 +158,8 @@ canvas {
 .windowContent {
   background: white;
   width: 350px;
-  max-height: 60vh;
+  max-height: 90vh;
+  min-height: 30px;
   margin: 6px;
   margin-top: 0px;
   box-shadow:
@@ -176,6 +177,8 @@ canvas {
   flex-direction: row;
   flex-wrap: wrap;
   font-family: Charcoal, Geneva, sans-serif;
+  resize: both;
+
 }
 
 .link {
