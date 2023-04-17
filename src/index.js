@@ -16,7 +16,54 @@
 
 // Make the DIV element draggable:
 dragElement(document.getElementById("window"));
+closeButton();
+minimizeButton();
+let orig = null;
+resizeButton();
 currentTime();
+
+function closeButton() {
+    document.getElementById("closeButton").onclick = function () {
+        document.getElementById("window").style.display = "none";
+    };
+}
+
+function minimizeButton() {
+    document.getElementById("minimizeButton").onclick = function () {
+        if (document.getElementById("windowContent").style.display === "none") {
+            document.getElementById("window").style.width = "auto";
+            document.getElementById("windowContent").style.display = "flex";
+        } else {
+            document.getElementById("window").style.width = "" + document.getElementById("windowHeader").clientWidth + "px"
+            document.getElementById("windowContent").style.display = "none"
+        }
+    };
+}
+
+function resizeButton() {
+    document.getElementById("resizeButton").onclick = function () {
+        if (orig === null) {
+            orig = [
+                document.getElementById("window").style.top,
+                document.getElementById("window").style.left,
+                document.getElementById("windowContent").clientWidth,
+                document.getElementById("windowContent").clientHeight,
+            ]
+            document.getElementById("window").style.top = "30px"
+            document.getElementById("window").style.left = "15px"
+            document.getElementById("windowContent").style.width = (window.innerWidth - 40) + "px";
+            document.getElementById("windowContent").style.height = (window.innerHeight - 70) + "px";
+        } else {
+            console.log(orig)
+            document.getElementById("window").style.top = orig[0]
+            document.getElementById("window").style.left = orig[1]
+            document.getElementById("windowContent").style.width = orig[2] + "px"
+            document.getElementById("windowContent").style.height = orig[3] + "px"
+            orig = null;
+        }
+
+    };
+}
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
