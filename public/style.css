@@ -92,7 +92,7 @@ canvas {
   box-shadow:
           1px 1px 0 0px #ffffff inset,
           -1px -1px 0 0px #AAAAAA inset,
-          0 0 0 2px #000000;
+          0 0 0 1px #000000;
 }
 
 @media only screen and (max-width: 800px) {
@@ -112,7 +112,7 @@ canvas {
   flex-direction: row;
   padding: 0px;
   justify-content: center;
-  height: 25px;
+  height: 24px;
 }
 
 .windowHeaderSpacer {
@@ -130,7 +130,7 @@ canvas {
           0px 10px 0 0px #777777 inset,
           0px 11px 0px 0px #ffffff inset,
           0px 12px 0 0px #777777 inset;
-  margin: 5px 6px;
+  margin: 5px 0px;
 
 }
 
@@ -139,12 +139,15 @@ canvas {
   padding: 0px;
   margin-top: 3px;
   font-size: 0.9em;
+  margin-right: 3px;
 }
 
 .windowHeaderIcon {
-  height: 1.1em;
-  margin: 3px;
+  height: 1em;
   padding: 0px;
+  margin-left: 4px;
+  margin-right: 2px;
+  margin-top: 4px;
 }
 
 .windowContent {
@@ -155,7 +158,13 @@ canvas {
   margin-top: 0px;
   box-shadow:
           1px 1px 0 0px #ffffff inset,
-          0 0 0 2px #000000;
+          0 0 0 1px #000000,
+  -1px 0px 0 1px #888888,
+  -1px -1px 0 1px #888888,
+  0px -1px 0 1px #888888,
+  1px 0px 0 1px #ffffff,
+  1px 1px 0 1px #ffffff,
+  0px 1px 0 1px #ffffff;
   overflow-y: scroll;
   overflow-x: scroll;
   display: flex;
@@ -177,16 +186,42 @@ canvas {
 
 .windowHeaderButton {
   all: unset;
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 11px;
   display: inline;
-  background: #CCCCCC;
-  margin: 4px;
-  flex: 0 0 15px;
+  background-image: linear-gradient(to bottom right, #999999, #ffffff);
+  margin: 6px;
+  flex: 0 0 11px;
   box-shadow:
-          1px 1px 0 0px #ffffff inset,
-            /*-1px -1px 0 0px #AAAAAA inset,*/
-          0 0 0 1px #000000;
+          1px 1px 0 0px #CCCCCC inset,
+          -1px -1px 0 0px #888888 inset,
+          0 0 0 1px #000000,
+          -1px 0px 0 1px #888888,
+          -1px -1px 0 1px #888888,
+          0px -1px 0 1px #888888,
+          1px 0px 0 1px #ffffff,
+          1px 1px 0 1px #ffffff,
+          0px 1px 0 1px #ffffff;
+}
+
+.windowHeaderButton:active {
+  background-image: linear-gradient(to bottom right, #444444, #888888);
+  box-shadow:
+          0 0 0 1px #000000,
+          -1px 0px 0 1px #888888,
+          -1px -1px 0 1px #888888,
+          0px -1px 0 1px #888888,
+          1px 0px 0 1px #ffffff,
+          1px 1px 0 1px #ffffff,
+          0px 1px 0 1px #ffffff;
+}
+
+#minimizeButton {
+  margin-left: 4px;
+}
+
+#resizeButton {
+  margin-right: 4px;
 }
 
 /* width */
