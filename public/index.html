@@ -8,27 +8,33 @@
 </head>
 <body>
 <div id="menuBar">
-    <div class="menuBarElement" style="font-size: 1.3em; padding-left: 10px;">&#63743;</div>
-    <div class="menuBarElement">File</div>
-    <div class="menuBarElement">Edit</div>
-    <div class="menuBarElement">View</div>
-    <div class="menuBarElement">Special</div>
-    <div class="menuBarElement" id="helpButton">Help</div>
+    <div class="menuBarElement" style="font-size: 1.1em; padding-left: 10px;" ontouchstart>&#63743;</div>
+    <div class="menuBarElement" ontouchstart>File</div>
+    <div class="menuBarElement" ontouchstart>Edit</div>
+    <div class="menuBarElement" ontouchstart>View</div>
+    <div class="menuBarElement" ontouchstart>Special</div>
+    <div class="menuBarElement" id="helpButton" ontouchstart>Help</div>
     <div class="menuBarSpacer"></div>
     <div class="menuBarElement" id="time">5:33 PM</div>
 </div>
 
 <div class="window" id="window">
     <div class="windowHeader" id="windowHeader">
-        <button class="windowHeaderButton" id="closeButton"></button>
+        <button class="windowHeaderButton" id="closeButton" ontouchstart></button>
         <div class="windowHeaderSpacer"></div>
         <img class="windowHeaderIcon" src="images/folder.png">
         <p class="windowHeaderText">Kieran's Links</p>
         <div class="windowHeaderSpacer"></div>
-        <button class="windowHeaderButton"></button>
-        <button class="windowHeaderButton"></button>
+        <button class="windowHeaderButton" id="resizeButton" ontouchstart>
+            <div style="border:none; border-right: 1px solid black; border-bottom: 1px solid black; margin-top: -5px; box-shadow: none; width:6px; height: 6px;">
+            </div>
+        </button>
+        <button class="windowHeaderButton" id="minimizeButton" ontouchstart>
+            <div style="border:none; border-top: 1px solid black; margin-top: 0px; box-shadow: none;"></div>
+            <div style="border:none; border-top: 1px solid black; margin-top: 1px; box-shadow: none;"></div>
+        </button>
     </div>
-    <div class="windowContent">
+    <div class="windowContent" id="windowContent">
         <p class="contentParagraph">
             Hi, I'm Kieran! I'm a software engineer and digital artist based in nyc.
         </p>
