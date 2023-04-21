@@ -23,7 +23,7 @@ class App {
     isAnimating = false;
 
     constructor() {
-        dragElement(document.getElementById("window"));
+
         closeButton();
         minimizeButton();
         this.resizeButton();
@@ -38,17 +38,23 @@ class App {
             restitution: 0.7,
             density: 0.02,
         })
-        this.floorPlane = Matter.Bodies.rectangle(0, window.innerHeight, window.innerWidth, 1, {
-            isStatic: true,
-            friction: 0.2,
-        })
-       // Matter.Body.rotate(this.windowPhysicsBox, Math.PI/2)
-
 
         Matter.Composite.add(this.engine.world, [
             this.windowPhysicsBox,
-            this.floorPlane,
         ])
+
+        this.createBorders();
+
+        this.dragElement(document.getElementById("window"));
+        this.helpButton();
+        addEventListener("resize", (event) => {
+            Matter.World.remove(this.engine.world, [
+                this.floorPlane,
+                this.leftPlane,
+                this.rightPlane,
+            ]);
+            this.createBorders()
+        });
 
         // var render = Matter.Render.create({
         //     element: document.body,
@@ -117,6 +123,102 @@ class App {
         };
     }
 
+    dragElement(elmnt) {
+        let windowDims = this.windowDims
+        let windowPhysicsBox = this.windowPhysicsBox
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        if (document.getElementById(elmnt.id + "Header")) {
+            // if present, the header is where you move the DIV from:
+            document.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;
+        } else {
+            // otherwise, move the DIV from anywhere inside the DIV:
+            elmnt.onmousedown = dragMouseDown;
+        }
+
+        function dragMouseDown(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // get the mouse cursor position at startup:
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            // call a function whenever the cursor moves:
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // calculate the new cursor position:
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            // set the element's new position:
+            if ((elmnt.offsetTop - pos2) < 28) {
+                elmnt.style.top = "28px"
+            } else {
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            }
+
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+
+            console.log(windowDims)
+            let posVector = Matter.Vector.create((elmnt.offsetLeft - pos1) + (windowDims.width/2), (elmnt.offsetTop - pos2) + (windowDims.height/2))
+            Matter.Body.setPosition(windowPhysicsBox, posVector)
+
+        }
+
+        function closeDragElement() {
+            // stop moving when mouse button is released:
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+    }
+
+    helpButton() {
+        document.getElementById("helpButton").onclick = () => {
+            let xForce = (Math.random() * 50) - 25
+            let bounceForce = Matter.Vector.create(xForce, -50)
+
+            Matter.Body.applyForce(this.windowPhysicsBox, this.windowPhysicsBox.position, bounceForce)
+
+
+            let rotationalForceAmount = 100 //(Math.random() * 100) - 25;
+            let rotationalForce = Matter.Vector.create(rotationalForceAmount, rotationalForceAmount)
+            let angle = this.windowPhysicsBox.angle
+            let posVec = Matter.Vector.create(this.windowPhysicsBox.position.x - ((this.windowDims.width/2) * Math.cos(angle)), this.windowPhysicsBox.position.y - ((this.windowDims.height/2) * Math.cos(angle)))
+            Matter.Body.applyForce(this.windowPhysicsBox, posVec, rotationalForce)
+        };
+    }
+
+    appResized() {
+
+    }
+
+    createBorders() {
+        this.floorPlane = Matter.Bodies.rectangle(window.innerWidth/2, window.innerHeight, window.innerWidth, 1, {
+            isStatic: true,
+            friction: 0.5,
+        })
+        this.leftPlane = Matter.Bodies.rectangle(window.innerWidth, window.innerHeight/2, 1, window.innerHeight, {
+            isStatic: true,
+            friction: 0.2,
+        })
+        this.rightPlane = Matter.Bodies.rectangle(0, window.innerHeight/2, 1, window.innerHeight, {
+            isStatic: true,
+            friction: 0.2,
+        })
+
+        Matter.Composite.add(this.engine.world, [
+            this.floorPlane,
+            this.leftPlane,
+            this.rightPlane,
+        ])
+    }
+
+
+
 
 }
 
@@ -138,53 +240,6 @@ function minimizeButton() {
     };
 }
 
-
-function dragElement(elmnt) {
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "Header")) {
-        // if present, the header is where you move the DIV from:
-        document.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;
-    } else {
-        // otherwise, move the DIV from anywhere inside the DIV:
-        elmnt.onmousedown = dragMouseDown;
-    }
-
-    function dragMouseDown(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // get the mouse cursor position at startup:
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
-        document.onmousemove = elementDrag;
-    }
-
-    function elementDrag(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // calculate the new cursor position:
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        // set the element's new position:
-        if ((elmnt.offsetTop - pos2) < 28) {
-            elmnt.style.top = "28px"
-        } else {
-            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        }
-
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-
-    }
-
-    function closeDragElement() {
-        // stop moving when mouse button is released:
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-}
 
 function currentTime() {
     let date = new Date();
