@@ -22,11 +22,9 @@ class App {
 
     constructor() {
         // Set up physics
-        this.window = new Window("window")
         this.engine = Matter.Engine.create()
-        Matter.Composite.add(this.engine.world, [
-            this.window.physicsBox,
-        ])
+        this.window = new Window("window", this.engine.world)
+
         this.createBorders();
 
         // Set up event listeners
@@ -86,15 +84,15 @@ class App {
     }
 
     createBorders() {
-        this.floorPlane = Matter.Bodies.rectangle(window.innerWidth/2, window.innerHeight, window.innerWidth, 1, {
+        this.floorPlane = Matter.Bodies.rectangle(window.innerWidth/2, window.innerHeight, window.innerWidth, 5, {
             isStatic: true,
             friction: 0.5,
         })
-        this.leftPlane = Matter.Bodies.rectangle(window.innerWidth, window.innerHeight/2, 1, window.innerHeight, {
+        this.leftPlane = Matter.Bodies.rectangle(window.innerWidth, window.innerHeight/2, 5, window.innerHeight, {
             isStatic: true,
             friction: 0.2,
         })
-        this.rightPlane = Matter.Bodies.rectangle(0, window.innerHeight/2, 1, window.innerHeight, {
+        this.rightPlane = Matter.Bodies.rectangle(0, window.innerHeight/2, 5, window.innerHeight, {
             isStatic: true,
             friction: 0.2,
         })

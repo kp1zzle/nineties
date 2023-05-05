@@ -2,13 +2,18 @@ import Matter from "matter-js";
 
 export class Window {
     orig = null;
-    constructor(extantId) {
+    constructor(extantId, world) {
         this.DOMElement = document.getElementById(extantId)
-        this.windowDims = this.DOMElement.getBoundingClientRect()
-        this.physicsBox = Matter.Bodies.rectangle(this.windowDims.x + (this.windowDims.width/2), this.windowDims.y + (this.windowDims.height/2), this.windowDims.width , this.windowDims.height, {
-            restitution: 0.7,
-            density: 0.02,
-        })
+        this.world = world
+        this.physicsBox = null
+        // this.windowDims = this.DOMElement.getBoundingClientRect()
+        // this.physicsBox = Matter.Bodies.rectangle(this.windowDims.x + (this.windowDims.width/2), this.windowDims.y + (this.windowDims.height/2), this.windowDims.width , this.windowDims.height, {
+        //     restitution: 0.7,
+        //     density: 0.02,
+        // })
+        // Matter.Composite.add(this.world, [
+        //     this.physicsBox,
+        // ])
 
         this.registerActionListeners()
     }
@@ -51,6 +56,26 @@ export class Window {
         };
 
         this.dragElement(this.DOMElement);
+
+        const ro = new ResizeObserver(entries => {
+                console.log("yeet")
+                if (this.physicsBox != null) {
+                    Matter.World.remove(this.world, [
+                        this.physicsBox
+                    ]);
+                }
+
+                this.windowDims = this.DOMElement.getBoundingClientRect()
+                this.physicsBox = Matter.Bodies.rectangle(this.windowDims.x + (this.windowDims.width / 2), this.windowDims.y + (this.windowDims.height / 2), this.windowDims.width, this.windowDims.height, {
+                    restitution: 0.7,
+                    density: 0.2,
+                })
+                Matter.Composite.add(this.world, [
+                    this.physicsBox,
+                ])
+                this.dragElement(this.DOMElement)
+        });
+        ro.observe(this.DOMElement);
     }
 
     updatePositionInLoop = () => {
